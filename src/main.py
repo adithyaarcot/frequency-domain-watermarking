@@ -8,7 +8,7 @@ wm_img = '../data/watermark_logo.png'
 zero_watermark, shape, key = embed_zero_watermark(host_img, wm_img)
 
 np.save('zero_watermark.npy', zero_watermark)
-np.save('key_seq.npy', key_seq)
+np.save('key_seq.npy', key)
 
 extracted_flat = extract_zero_watermark(host_img, zero_watermark, shape, key)
 extracted_img = (extracted_flat * 255).astype(np.uint8)
