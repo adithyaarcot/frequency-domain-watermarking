@@ -14,7 +14,13 @@ extracted_img = (extracted_flat * 255).astype(np.uint8)
 
 cv2.imwrite('../data/extracted_watermark.png', extracted_img)
 
+
 original_wm = cv2.imread(wm_img, cv2.IMREAD_GRAYSCALE)
 _, orig_bin = cv2.threshold(original_wm, 127, 1, cv2.THRESH_BINARY)
-nc = np.sum(orig_bin.flatten() == extracted_flat.flatten()) / len(extracted_flat)
-print(f"Normalized Correlation (NC): {nc}")
+
+
+orig_flat = orig_bin.flatten()
+extr_flat = extracted_flat.flatten()
+
+nc = np.sum(orig_flat == extr_flat) / len(orig_flat)
+print(f"Normalized Correlation (NC): {nc:.4f}")
